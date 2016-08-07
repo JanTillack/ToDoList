@@ -14,6 +14,7 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.1/ui-bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.1/ui-bootstrap-tpls.min.js"></script>
 	<script type="text/javascript" src="ListCtrl.js"></script>
+	<script type="text/javascript" src="TaskDetail.js"></script>
 </head>
 <body ng-app='todosApp'>
 	<div ng-controller="AddTasksCtrl" class="jumbotron col-md-3">
@@ -44,15 +45,16 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<td>TASK NAME</td>
+					<td >TASK NAME</td>
 					<td>TASK PRIORITY</td>
 					<td>DONE</td>
 					<td>DELETE</td>
+					<td>DESCRIPTION</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="task in tasksList">
-					<td>{{task.name}}</td>
+					<td ng-click="showDetails(task._id)">{{task.name}}</td>
 					<td>{{task.priority}}</td>
 					<td>
 						<button ng-click="setTaskState(task)" class="btn btn-success">
@@ -65,11 +67,14 @@
 							<span class="glyphicon glyphicon-trash"></span>
 						</button>
 					</td>
+					<td></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-
+<div ng-controller="TaskDetail" class="jumbotron col-md-4">
+	{{task}}
+</div>
 
 
 

@@ -1,6 +1,6 @@
 var ngApp = angular.module('todosApp', ['ui.bootstrap']);
 
-ngApp.controller('AddTasksCtrl', ['$scope', '$http', function($scope, $http){
+ngApp.controller('AddTasksCtrl', ['$scope', '$http','$rootScope', function($scope, $http, $rootScope){
 	var apiUrl = 'http://localhost:3000/api';
 
 	$scope.task = {
@@ -32,6 +32,7 @@ ngApp.controller('AddTasksCtrl', ['$scope', '$http', function($scope, $http){
 			data: $scope.task
 		}).then(function successCallback(response) {
 			console.log(response);
+			$rootScope.$broadcast('taskAdded');
 		});
 	};
 

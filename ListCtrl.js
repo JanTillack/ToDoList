@@ -1,6 +1,6 @@
 var ngApp = angular.module('todosApp');
 
-ngApp.controller('ListCtrl', ['$scope', '$http', function($scope, $http){
+ngApp.controller('ListCtrl', ['$scope', '$http','$rootScope', function($scope, $http, $rootScope){
 	var apiUrl = 'http://localhost:3000/api';
 
 	$scope.tasksList = null;
@@ -15,6 +15,17 @@ ngApp.controller('ListCtrl', ['$scope', '$http', function($scope, $http){
 
 	});
 }
+
+$scope.showDetails = function (id) {
+	$rootScope.$broadcast('showDetails', id)
+}
+	
+	$scope.$on('taskAdded' , function(){
+		getTasks();
+	})
+
+	getTasks();
+
 	$scope.setTaskState = function(task) {
 		task.done = !task.done;
 		$http({
