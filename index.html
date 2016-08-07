@@ -13,6 +13,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.1/ui-bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.1/ui-bootstrap-tpls.min.js"></script>
+	<script type="text/javascript" src="ListCtrl.js"></script>
 </head>
 <body ng-app='todosApp'>
 	<div ng-controller="AddTasksCtrl" class="jumbotron col-md-3">
@@ -30,15 +31,44 @@
 				<input ng-model="task.priority" type="text" class="form-control" aria-describedby="basic-addon3">
 			</div>
 			
-			 <div class="input-group">
-			<span class="input-group-btn">
-				<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-			</span>
-			<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="task.dateToDo" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" id="task_date"/>
-		</div>
-		<button ng-click="addTask()" class="btn btn-success">ADD TASK</button>
-	</form>
-</div>
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+				<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="task.dateToDo" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" id="task_date"/>
+			</div>
+			<button ng-click="addTask()" class="btn btn-success">ADD TASK</button>
+		</form>
+	</div>
+	<div ng-controller="ListCtrl" class="jumbotron col-md-5">
+		<table class="table">
+			<thead>
+				<tr>
+					<td>TASK NAME</td>
+					<td>TASK PRIORITY</td>
+					<td>DONE</td>
+					<td>DELETE</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="task in tasksList">
+					<td>{{task.name}}</td>
+					<td>{{task.priority}}</td>
+					<td>
+						<button ng-click="setTaskState(task)" class="btn btn-success">
+							<span ng-if="task.done" class="glyphicon glyphicon-ok"></span>
+							<span ng-if="!task.done" class="glyphicon glyphicon-remove"></span>
+						</button>
+					</td>
+					<td>
+						<button ng-click="deleteTask(task)" class="btn btn-danger">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
 
 
