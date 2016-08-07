@@ -6,7 +6,8 @@ ngApp.controller('AddTasksCtrl', ['$scope', '$http', function($scope, $http){
 	$scope.task = {
 		name: '',
 		description: '',
-		priority: 3
+		priority: 3,
+		done: false
 	};
 
 	$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -15,6 +16,10 @@ ngApp.controller('AddTasksCtrl', ['$scope', '$http', function($scope, $http){
 	$scope.popup1 = {
 		opened: false
 	};
+
+
+
+	
 	$scope.open1 = function() {
 		$scope.popup1.opened = true;
 	};
